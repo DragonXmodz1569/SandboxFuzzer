@@ -2,30 +2,30 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var iterations: UInt64 = 0
-    @State private var timer: Timer?
+    @State private var showAlert = false
+
+    private let updates = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack(spacing: 20) {
             Text("Fuzz iterations: \(iterations)")
-              .font(.title2)
-              .padding()
+                .font(.title2)
+                .padding()
 
-            Button("Quit") {
-                exit(0)
+            Button("Download Crashes") {
+                // implement a tiny HTTP server or use Files app
             }
             .padding()
-            .background(Color.red.opacity(0.8))
+            .background(Color.blue.opacity(0.8))
             .cornerRadius(8)
         }
-        .onAppear {
-            // Start a timer that fires every 0.1s
-            timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                // Read the C atomic counter
-                iterations = UInt64(gFuzzIterationCount)
-            }
+        .onReceive(updates) { _ in
+            iterations = atomicLoadIterationCount()
         }
-        .onDisappear {
-            timer?.invalidate()
+        .alert("Escape Found!", isPresented: $showAlert) {
+          Button("OK") {}
+        } message: {
+          Text("A sandbox bypass was detected. Check /Documents/crashes/")
         }
     }
 }

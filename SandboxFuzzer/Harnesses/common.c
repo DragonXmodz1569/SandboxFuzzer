@@ -1,8 +1,6 @@
-//
-//  common.c
-//  SandboxFuzzer
-//
-//  Created by unknown unknown on 19/07/2025.
-//
+// Harnesses/common.c
+#include "../Bridge/Bridge.h"  // in .c files
+#include <stdatomic.h>
 
-#include <stdio.h>
+// Atomic iteration counter, zero-initialized by C standard
+_Atomic uint64_t gFuzzIterationCount = 0;

@@ -14,8 +14,11 @@
 		5D31CBB42E2BDE1C007699A8 /* FuzzerHarness.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB32E2BDE1C007699A8 /* FuzzerHarness.c */; };
 		5D31CBB82E2BE03E007699A8 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
 		5D31CBBA2E2BE15A007699A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */; };
-		5D31CBBC2E2BE438007699A8 /* FuzzerMainBridge.h in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB62E2BE03E007699A8 /* FuzzerMainBridge.h */; };
-		5D31CBBE2E2BE508007699A8 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D31CBAF2E2BDDCC007699A8 /* libclang_rt.fuzzer_ios.a */; };
+		5D77DE422E2C3556000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
+		5D77DE442E2C357A000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
+		5D77DE462E2C3593000C6058 /* harness_airplay_rtsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */; };
+		5D77DE482E2C35A7000C6058 /* harness_appstored.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE472E2C35A7000C6058 /* harness_appstored.c */; };
+		5D77DE4A2E2C418D000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,14 +27,16 @@
 		5D31BF922E2BD6F1007699A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5D31BF942E2BD6F3007699A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5D31CBAF2E2BDDCC007699A8 /* libclang_rt.fuzzer_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libclang_rt.fuzzer_ios.a; path = "../../llvm-project/build/lib/clang/22/lib/darwin/libclang_rt.fuzzer_ios.a"; sourceTree = "<group>"; };
-		5D31CBB12E2BDE1C007699A8 /* SandboxFuzzer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SandboxFuzzer-Bridging-Header.h"; sourceTree = "<group>"; };
 		5D31CBB32E2BDE1C007699A8 /* FuzzerHarness.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FuzzerHarness.c; sourceTree = "<group>"; };
-		5D31CBB52E2BE029007699A8 /* libclang_rt.fuzzer_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libclang_rt.fuzzer_ios.a; sourceTree = "<group>"; };
-		5D31CBB62E2BE03E007699A8 /* FuzzerMainBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FuzzerMainBridge.h; sourceTree = "<group>"; };
 		5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FuzzerMainBridge.c; sourceTree = "<group>"; };
 		5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D31CBBB2E2BE188007699A8 /* SandboxFuzzer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SandboxFuzzer-Bridging-Header.h"; sourceTree = "<group>"; };
+		5D77DE3E2E2C3467000C6058 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libclang_rt.fuzzer_ios.a; sourceTree = "<group>"; };
+		5D77DE412E2C3556000C6058 /* common.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = common.c; sourceTree = "<group>"; };
+		5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = harness_imtranscoder.c; sourceTree = "<group>"; };
+		5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = harness_airplay_rtsp.c; sourceTree = "<group>"; };
+		5D77DE472E2C35A7000C6058 /* harness_appstored.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = harness_appstored.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D31CBBE2E2BE508007699A8 /* libclang_rt.fuzzer_ios.a in Frameworks */,
+				5D77DE4A2E2C418D000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,10 +54,8 @@
 		5D31BF842E2BD6F1007699A8 = {
 			isa = PBXGroup;
 			children = (
-				5D31CBAF2E2BDDCC007699A8 /* libclang_rt.fuzzer_ios.a */,
 				5D31BF8F2E2BD6F1007699A8 /* SandboxFuzzer */,
 				5D31BF8E2E2BD6F1007699A8 /* Products */,
-				5D31CBB12E2BDE1C007699A8 /* SandboxFuzzer-Bridging-Header.h */,
 				5D31CBBD2E2BE508007699A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -68,14 +71,15 @@
 		5D31BF8F2E2BD6F1007699A8 /* SandboxFuzzer */ = {
 			isa = PBXGroup;
 			children = (
-				5D31CBB52E2BE029007699A8 /* libclang_rt.fuzzer_ios.a */,
+				5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */,
+				5D77DE3D2E2C33A5000C6058 /* Resources */,
+				5D77DE3C2E2C339D000C6058 /* Harnesses */,
+				5D77DE3B2E2C3381000C6058 /* Bridge */,
 				5D31CBB32E2BDE1C007699A8 /* FuzzerHarness.c */,
 				5D31BF902E2BD6F1007699A8 /* SandboxFuzzerApp.swift */,
 				5D31BF922E2BD6F1007699A8 /* ContentView.swift */,
 				5D31BF942E2BD6F3007699A8 /* Assets.xcassets */,
 				5D31BF962E2BD6F3007699A8 /* Preview Content */,
-				5D31CBB62E2BE03E007699A8 /* FuzzerMainBridge.h */,
-				5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */,
 				5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */,
 				5D31CBBB2E2BE188007699A8 /* SandboxFuzzer-Bridging-Header.h */,
 			);
@@ -95,6 +99,41 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5D77DE3B2E2C3381000C6058 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */,
+				5D77DE3E2E2C3467000C6058 /* Bridge.h */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		5D77DE3C2E2C339D000C6058 /* Harnesses */ = {
+			isa = PBXGroup;
+			children = (
+				5D77DE412E2C3556000C6058 /* common.c */,
+				5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */,
+				5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */,
+				5D77DE472E2C35A7000C6058 /* harness_appstored.c */,
+			);
+			path = Harnesses;
+			sourceTree = "<group>";
+		};
+		5D77DE3D2E2C33A5000C6058 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5D77DE492E2C35F7000C6058 /* corpus */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5D77DE492E2C35F7000C6058 /* corpus */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = corpus;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,10 +207,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D31CBBC2E2BE438007699A8 /* FuzzerMainBridge.h in Sources */,
+				5D77DE482E2C35A7000C6058 /* harness_appstored.c in Sources */,
+				5D77DE422E2C3556000C6058 /* common.c in Sources */,
 				5D31CBB42E2BDE1C007699A8 /* FuzzerHarness.c in Sources */,
 				5D31BF932E2BD6F1007699A8 /* ContentView.swift in Sources */,
 				5D31BF912E2BD6F1007699A8 /* SandboxFuzzerApp.swift in Sources */,
+				5D77DE442E2C357A000C6058 /* harness_imtranscoder.c in Sources */,
+				5D77DE462E2C3593000C6058 /* harness_airplay_rtsp.c in Sources */,
 				5D31CBBA2E2BE15A007699A8 /* AppDelegate.swift in Sources */,
 				5D31CBB82E2BE03E007699A8 /* FuzzerMainBridge.c in Sources */,
 			);
@@ -313,6 +355,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SandboxFuzzer/Bridge";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -329,12 +372,15 @@
 					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
 					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
 					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
-					"\"/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+					/Users/dxmz/Desktop/Xcode,
+					"Fuzzer/llvm-project/build/lib/clang/22/lib/darwin",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SandboxFuzzer",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-fsanitize=fuzzer-no-link";
 				OTHER_LDFLAGS = (
-					"\"-L/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+					"\"-L \\\"${PROJECT_DIR}\\\"\"",
 					"-lclang_rt.fuzzer_ios",
 					"-lc++",
 					"-ObjC",
@@ -342,7 +388,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer/SandboxFuzzer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer-Bridging-Header.h\n\n";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -363,6 +409,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SandboxFuzzer/Bridge";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -379,12 +426,15 @@
 					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
 					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
 					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
-					"\"/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+					/Users/dxmz/Desktop/Xcode,
+					"Fuzzer/llvm-project/build/lib/clang/22/lib/darwin",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SandboxFuzzer",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-fsanitize=fuzzer-no-link";
 				OTHER_LDFLAGS = (
-					"\"-L/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+					"\"-L \\\"${PROJECT_DIR}\\\"\"",
 					"-lclang_rt.fuzzer_ios",
 					"-lc++",
 					"-ObjC",
@@ -392,7 +442,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer/SandboxFuzzer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer-Bridging-Header.h\n\n";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

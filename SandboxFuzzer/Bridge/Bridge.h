@@ -1,12 +1,11 @@
-//
-//  Bridge.h
-//  SandboxFuzzer
-//
-//  Created by unknown unknown on 19/07/2025.
-//
+#ifndef BRIDGE_H
+#define BRIDGE_H
 
-#ifndef Bridge_h
-#define Bridge_h
+#include <stdatomic.h>
+#include <stdint.h>
 
+extern _Atomic uint64_t gFuzzIterationCount;
 
-#endif /* Bridge_h */
+int FuzzerMain(int argc, char **argv);
+
+#endif /* BRIDGE_H */
