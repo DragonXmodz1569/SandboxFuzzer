@@ -1,6 +1,6 @@
 #include <stdatomic.h>
 
-_Atomic uint64_t gFuzzIterationCount = 0;
+extern _Atomic uint64_t gFuzzIterationCount;
 
 int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
     atomic_fetch_add(&gFuzzIterationCount, 1);
