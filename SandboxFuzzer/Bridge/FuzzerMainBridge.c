@@ -1,4 +1,3 @@
-#include "Bridge.h"
 #include <stdatomic.h>
 
 _Atomic uint64_t gFuzzIterationCount = 0;

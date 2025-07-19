@@ -32,7 +32,6 @@
 		5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FuzzerMainBridge.c; sourceTree = "<group>"; };
 		5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D31CBBB2E2BE188007699A8 /* SandboxFuzzer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SandboxFuzzer-Bridging-Header.h"; sourceTree = "<group>"; };
-		5D77DE3E2E2C3467000C6058 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libclang_rt.fuzzer_ios.a; sourceTree = "<group>"; };
 		5D77DE412E2C3556000C6058 /* common.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = common.c; sourceTree = "<group>"; };
 		5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = harness_imtranscoder.c; sourceTree = "<group>"; };
@@ -108,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */,
-				5D77DE3E2E2C3467000C6058 /* Bridge.h */,
 			);
 			path = Bridge;
 			sourceTree = "<group>";
@@ -392,7 +390,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer/SandboxFuzzer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -446,7 +444,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer/SandboxFuzzer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

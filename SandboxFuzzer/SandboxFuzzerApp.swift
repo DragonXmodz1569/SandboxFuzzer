@@ -31,7 +31,15 @@ struct SandboxFuzzerApp: App {
         let cstrs = args.map { strdup($0) } + [nil]
         let argv = UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>.allocate(capacity: cstrs.count)
         argv.initialize(from: cstrs, count: cstrs.count)
-        _ = FuzzerMain
-        // never returns
+
+        // 🔥 ACTUALLY CALL FuzzerMain
+        let result = FuzzerMain(argc, argv)
+        print("FuzzerMain exited with code: \(result)")
+
+        // Optional cleanup
+        for ptr in cstrs where ptr != nil {
+            free(ptr)
+        }
+        argv.deallocate()
     }
 }

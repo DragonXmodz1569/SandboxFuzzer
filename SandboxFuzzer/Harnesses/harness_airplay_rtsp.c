@@ -1,11 +1,11 @@
 // Harnesses/harness_airplay_rtsp.c
-#include "../Bridge/Bridge.h"  // in .c files
 #include <stdatomic.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <CFNetwork/CFHTTPMessage.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include "../SandboxFuzzer-Bridging-Header.h"
 
 // Stub for private parser call
 extern void RTSPParserProcess(CFHTTPMessageRef msg);

@@ -7,8 +7,9 @@
 extern "C" {
 #endif
 
-void FuzzerMain(void);
-uint64_t atomicLoadIterationCount(void);
+extern _Atomic uint64_t gFuzzIterationCount;
+int FuzzerMain(int argc, char **argv);  // <-- match this to actual function
+uint64_t GetFuzzIterationCount(void);
 
 #ifdef __cplusplus
 }
