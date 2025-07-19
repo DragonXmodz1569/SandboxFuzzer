@@ -6,9 +6,11 @@
 #include <fcntl.h>
 #include "../SandboxFuzzer-Bridging-Header.h"
 
-int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
-    atomic_fetch_add(&gFuzzIterationCount, 1);
+_Atomic uint64_t gFuzzIterationCount = 0;
 
+int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+    atomic_fetch_add_explicit(&gFuzzIterationCount, 1, memory_order_relaxed);
+    
     // Example stub logic
     if (size > 0) {
         CFDataRef cf = CFDataCreate(NULL, data, size);

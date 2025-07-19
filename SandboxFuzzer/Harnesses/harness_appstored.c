@@ -7,7 +7,7 @@
 
 
 int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
-    atomic_fetch_add(&gFuzzIterationCount, 1);
+    atomic_fetch_add_explicit(&gFuzzIterationCount, 1, memory_order_relaxed);
 
     // Simulate basic request inspection
     if (size > 0 && data[0] == 'A') {
