@@ -3,12 +3,14 @@ import SwiftUI
 struct ContentView: View {
     @State private var iterations: UInt64 = 0
     @State private var showAlert = false
+    
+    let atomicLoadIterationCount = AtomicCounter()
 
     private let updates = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Fuzz iterations: \(iterations)")
+            Text("Fuzz iterations: \(atomicLoadIterationCount.value)")
                 .font(.title2)
                 .padding()
 
@@ -20,7 +22,7 @@ struct ContentView: View {
             .cornerRadius(8)
         }
         .onReceive(updates) { _ in
-            iterations = atomicLoadIterationCount()
+            atomicLoadIterationCount.increment()
         }
         .alert("Escape Found!", isPresented: $showAlert) {
           Button("OK") {}

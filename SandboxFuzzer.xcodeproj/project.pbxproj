@@ -19,6 +19,7 @@
 		5D77DE462E2C3593000C6058 /* harness_airplay_rtsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */; };
 		5D77DE482E2C35A7000C6058 /* harness_appstored.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE472E2C35A7000C6058 /* harness_appstored.c */; };
 		5D77DE4A2E2C418D000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */; };
+		5D77DE4C2E2C4DEB000C6058 /* AtomicCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE4B2E2C4DEB000C6058 /* AtomicCounter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = harness_imtranscoder.c; sourceTree = "<group>"; };
 		5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = harness_airplay_rtsp.c; sourceTree = "<group>"; };
 		5D77DE472E2C35A7000C6058 /* harness_appstored.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = harness_appstored.c; sourceTree = "<group>"; };
+		5D77DE4B2E2C4DEB000C6058 /* AtomicCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicCounter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				5D31BF962E2BD6F3007699A8 /* Preview Content */,
 				5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */,
 				5D31CBBB2E2BE188007699A8 /* SandboxFuzzer-Bridging-Header.h */,
+				5D77DE4B2E2C4DEB000C6058 /* AtomicCounter.swift */,
 			);
 			path = SandboxFuzzer;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				5D77DE482E2C35A7000C6058 /* harness_appstored.c in Sources */,
 				5D77DE422E2C3556000C6058 /* common.c in Sources */,
 				5D31CBB42E2BDE1C007699A8 /* FuzzerHarness.c in Sources */,
+				5D77DE4C2E2C4DEB000C6058 /* AtomicCounter.swift in Sources */,
 				5D31BF932E2BD6F1007699A8 /* ContentView.swift in Sources */,
 				5D31BF912E2BD6F1007699A8 /* SandboxFuzzerApp.swift in Sources */,
 				5D77DE442E2C357A000C6058 /* harness_imtranscoder.c in Sources */,
@@ -388,7 +392,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer-Bridging-Header.h\n\n";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -442,7 +446,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer-Bridging-Header.h\n\n";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
