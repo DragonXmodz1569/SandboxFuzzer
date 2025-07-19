@@ -7,11 +7,13 @@
 #include <fcntl.h>
 #include "../SandboxFuzzer-Bridging-Header.h"
 
+extern _Atomic uint64_t gFuzzIterationCount;
+
 // Stub for private parser call
 extern void RTSPParserProcess(CFHTTPMessageRef msg);
 
 int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
-    atomic_fetch_add(&gFuzzIterationCount, 1);
+    atomic_fetch_add_explicit(&gFuzzIterationCount, 1, memory_order_relaxed);
 
     // Create a fake RTSP HTTP request
     CFURLRef url = CFURLCreateWithString(NULL, CFSTR("rtsp://localhost/stream"), NULL);

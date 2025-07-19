@@ -15,9 +15,6 @@
 		5D31CBB82E2BE03E007699A8 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
 		5D31CBBA2E2BE15A007699A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */; };
 		5D77DE422E2C3556000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
-		5D77DE442E2C357A000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
-		5D77DE462E2C3593000C6058 /* harness_airplay_rtsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */; };
-		5D77DE482E2C35A7000C6058 /* harness_appstored.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE472E2C35A7000C6058 /* harness_appstored.c */; };
 		5D77DE4A2E2C418D000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */; };
 		5D77DE4C2E2C4DEB000C6058 /* AtomicCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE4B2E2C4DEB000C6058 /* AtomicCounter.swift */; };
 /* End PBXBuildFile section */
@@ -208,14 +205,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D77DE482E2C35A7000C6058 /* harness_appstored.c in Sources */,
 				5D77DE422E2C3556000C6058 /* common.c in Sources */,
 				5D31CBB42E2BDE1C007699A8 /* FuzzerHarness.c in Sources */,
 				5D77DE4C2E2C4DEB000C6058 /* AtomicCounter.swift in Sources */,
 				5D31BF932E2BD6F1007699A8 /* ContentView.swift in Sources */,
 				5D31BF912E2BD6F1007699A8 /* SandboxFuzzerApp.swift in Sources */,
-				5D77DE442E2C357A000C6058 /* harness_imtranscoder.c in Sources */,
-				5D77DE462E2C3593000C6058 /* harness_airplay_rtsp.c in Sources */,
 				5D31CBBA2E2BE15A007699A8 /* AppDelegate.swift in Sources */,
 				5D31CBB82E2BE03E007699A8 /* FuzzerMainBridge.c in Sources */,
 			);
