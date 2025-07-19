@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5D31BF912E2BD6F1007699A8 /* SandboxFuzzerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D31BF902E2BD6F1007699A8 /* SandboxFuzzerApp.swift */; };
+		5D31BF932E2BD6F1007699A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D31BF922E2BD6F1007699A8 /* ContentView.swift */; };
+		5D31BF952E2BD6F3007699A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF942E2BD6F3007699A8 /* Assets.xcassets */; };
+		5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */; };
+		5D31CBB42E2BDE1C007699A8 /* FuzzerHarness.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB32E2BDE1C007699A8 /* FuzzerHarness.c */; };
+		5D31CBB82E2BE03E007699A8 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
+		5D31CBBA2E2BE15A007699A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */; };
+		5D31CBBC2E2BE438007699A8 /* FuzzerMainBridge.h in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB62E2BE03E007699A8 /* FuzzerMainBridge.h */; };
+		5D31CBBE2E2BE508007699A8 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D31CBAF2E2BDDCC007699A8 /* libclang_rt.fuzzer_ios.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5D31BF8D2E2BD6F1007699A8 /* SandboxFuzzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SandboxFuzzer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D31BF902E2BD6F1007699A8 /* SandboxFuzzerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxFuzzerApp.swift; sourceTree = "<group>"; };
+		5D31BF922E2BD6F1007699A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5D31BF942E2BD6F3007699A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5D31CBAF2E2BDDCC007699A8 /* libclang_rt.fuzzer_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libclang_rt.fuzzer_ios.a; path = "../../llvm-project/build/lib/clang/22/lib/darwin/libclang_rt.fuzzer_ios.a"; sourceTree = "<group>"; };
+		5D31CBB12E2BDE1C007699A8 /* SandboxFuzzer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SandboxFuzzer-Bridging-Header.h"; sourceTree = "<group>"; };
+		5D31CBB32E2BDE1C007699A8 /* FuzzerHarness.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FuzzerHarness.c; sourceTree = "<group>"; };
+		5D31CBB52E2BE029007699A8 /* libclang_rt.fuzzer_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libclang_rt.fuzzer_ios.a; sourceTree = "<group>"; };
+		5D31CBB62E2BE03E007699A8 /* FuzzerMainBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FuzzerMainBridge.h; sourceTree = "<group>"; };
+		5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FuzzerMainBridge.c; sourceTree = "<group>"; };
+		5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5D31CBBB2E2BE188007699A8 /* SandboxFuzzer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SandboxFuzzer-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5D31BF8A2E2BD6F1007699A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D31CBBE2E2BE508007699A8 /* libclang_rt.fuzzer_ios.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5D31BF842E2BD6F1007699A8 = {
+			isa = PBXGroup;
+			children = (
+				5D31CBAF2E2BDDCC007699A8 /* libclang_rt.fuzzer_ios.a */,
+				5D31BF8F2E2BD6F1007699A8 /* SandboxFuzzer */,
+				5D31BF8E2E2BD6F1007699A8 /* Products */,
+				5D31CBB12E2BDE1C007699A8 /* SandboxFuzzer-Bridging-Header.h */,
+				5D31CBBD2E2BE508007699A8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5D31BF8E2E2BD6F1007699A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5D31BF8D2E2BD6F1007699A8 /* SandboxFuzzer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5D31BF8F2E2BD6F1007699A8 /* SandboxFuzzer */ = {
+			isa = PBXGroup;
+			children = (
+				5D31CBB52E2BE029007699A8 /* libclang_rt.fuzzer_ios.a */,
+				5D31CBB32E2BDE1C007699A8 /* FuzzerHarness.c */,
+				5D31BF902E2BD6F1007699A8 /* SandboxFuzzerApp.swift */,
+				5D31BF922E2BD6F1007699A8 /* ContentView.swift */,
+				5D31BF942E2BD6F3007699A8 /* Assets.xcassets */,
+				5D31BF962E2BD6F3007699A8 /* Preview Content */,
+				5D31CBB62E2BE03E007699A8 /* FuzzerMainBridge.h */,
+				5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */,
+				5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */,
+				5D31CBBB2E2BE188007699A8 /* SandboxFuzzer-Bridging-Header.h */,
+			);
+			path = SandboxFuzzer;
+			sourceTree = "<group>";
+		};
+		5D31BF962E2BD6F3007699A8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5D31CBBD2E2BE508007699A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5D31BF8C2E2BD6F1007699A8 /* SandboxFuzzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D31BF9B2E2BD6F3007699A8 /* Build configuration list for PBXNativeTarget "SandboxFuzzer" */;
+			buildPhases = (
+				5D31BF892E2BD6F1007699A8 /* Sources */,
+				5D31BF8A2E2BD6F1007699A8 /* Frameworks */,
+				5D31BF8B2E2BD6F1007699A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SandboxFuzzer;
+			productName = SandboxFuzzer;
+			productReference = 5D31BF8D2E2BD6F1007699A8 /* SandboxFuzzer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5D31BF852E2BD6F1007699A8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					5D31BF8C2E2BD6F1007699A8 = {
+						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
+					};
+				};
+			};
+			buildConfigurationList = 5D31BF882E2BD6F1007699A8 /* Build configuration list for PBXProject "SandboxFuzzer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5D31BF842E2BD6F1007699A8;
+			productRefGroup = 5D31BF8E2E2BD6F1007699A8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5D31BF8C2E2BD6F1007699A8 /* SandboxFuzzer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5D31BF8B2E2BD6F1007699A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */,
+				5D31BF952E2BD6F3007699A8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5D31BF892E2BD6F1007699A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D31CBBC2E2BE438007699A8 /* FuzzerMainBridge.h in Sources */,
+				5D31CBB42E2BDE1C007699A8 /* FuzzerHarness.c in Sources */,
+				5D31BF932E2BD6F1007699A8 /* ContentView.swift in Sources */,
+				5D31BF912E2BD6F1007699A8 /* SandboxFuzzerApp.swift in Sources */,
+				5D31CBBA2E2BE15A007699A8 /* AppDelegate.swift in Sources */,
+				5D31CBB82E2BE03E007699A8 /* FuzzerMainBridge.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5D31BF992E2BD6F3007699A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5D31BF9A2E2BD6F3007699A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5D31BF9C2E2BD6F3007699A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++23";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SandboxFuzzer/Preview Content\"";
+				DEVELOPMENT_TEAM = SQ2U2TBZQG;
+				ENABLE_BITCODE = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"\"/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "-fsanitize=fuzzer-no-link";
+				OTHER_LDFLAGS = (
+					"\"-L/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+					"-lclang_rt.fuzzer_ios",
+					"-lc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer/SandboxFuzzer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5D31BF9D2E2BD6F3007699A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++23";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SandboxFuzzer/Preview Content\"";
+				DEVELOPMENT_TEAM = SQ2U2TBZQG;
+				ENABLE_BITCODE = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"/Users/dxmz/Desktop/llvm-project/build/lib/clang/22/lib/darwin",
+					"\"/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "-fsanitize=fuzzer-no-link";
+				OTHER_LDFLAGS = (
+					"\"-L/Users/dxmz/Desktop/Xcode Fuzzer/llvm-project/build/lib/clang/22/lib/darwin\"",
+					"-lclang_rt.fuzzer_ios",
+					"-lc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragon.SandboxFuzzer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SandboxFuzzer/SandboxFuzzer-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5D31BF882E2BD6F1007699A8 /* Build configuration list for PBXProject "SandboxFuzzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D31BF992E2BD6F3007699A8 /* Debug */,
+				5D31BF9A2E2BD6F3007699A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5D31BF9B2E2BD6F3007699A8 /* Build configuration list for PBXNativeTarget "SandboxFuzzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D31BF9C2E2BD6F3007699A8 /* Debug */,
+				5D31BF9D2E2BD6F3007699A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5D31BF852E2BD6F1007699A8 /* Project object */;
+}
