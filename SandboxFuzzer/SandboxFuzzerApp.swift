@@ -2,59 +2,40 @@ import SwiftUI
 
 @main
 struct SandboxFuzzerApp: App {
-    @StateObject private var manager = FuzzManager()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(manager)
-                .onAppear { manager.startFuzz() }
-        }
-    }
-}
-
-class FuzzManager: ObservableObject {
-    @Published var iterations: UInt64 = 0
-    @Published var isRunning = false
-
-    private var timer: Timer?
-    private let corpusPath: String
-
-    init() {
-        let fm = FileManager.default
-        let docs = fm.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let corpus = docs.appendingPathComponent("corpus")
-        corpusPath = corpus.path
-        try? fm.createDirectory(at: corpus, withIntermediateDirectories: true)
-        for seed in ["seed1.jpg","seed2.png"] {
-            if let src = Bundle.main.url(forResource: seed, withExtension: nil) {
-                let dst = corpus.appendingPathComponent(seed)
-                if !fm.fileExists(atPath: dst.path) {
-                    try? fm.copyItem(at: src, to: dst)
+                .onAppear {
+                    startFuzzing()
                 }
-            }
         }
     }
-
-    func startFuzz() {
-        guard !isRunning else { return }
-        isRunning = true
-        DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                self.iterations = atomicLoadIterationCount()
+    
+    func startFuzzing() {
+        Task {
+            guard let corpusPath = getCorpusPath() else {
+                print("ERROR: Corpus path not found")
+                return
             }
-        }
-        DispatchQueue.global(qos:.background).async {
-            print("🔍 [Swift] calling FuzzerHarness at \(self.corpusPath)")
-            let code = FuzzerHarness(self.corpusPath)
-            print("🔚 [Swift] harness exited \(code)")
-            DispatchQueue.main.async {
-                self.isRunning = false
-                self.timer?.invalidate()
-            }
+            
+            print("Starting fuzzer with corpus: \(corpusPath)")
+            
+            // Initialize and run fuzzer
+            let fuzzer = FuzzerEngine()
+            await fuzzer.run(withCorpusPath: corpusPath)
         }
     }
-
-    func stopFuzz() {
-        timer?.invalidate(); isRunning = false
+    
+    func getCorpusPath() -> String? {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        
+        return documentsURL
+            .appendingPathComponent("SandboxFuzzer")
+            .appendingPathComponent("corpus")
+            .path
     }
 }
