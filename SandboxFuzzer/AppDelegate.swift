@@ -4,24 +4,17 @@ import Darwin  // for chdir()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        // Setup SwiftUI root view
-        let contentView = ContentView()
-
-        // Create UIWindow and set rootViewController to UIHostingController hosting ContentView
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UIHostingController(rootView: contentView)
-        window?.makeKeyAndVisible()
-
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let corpusURL = documentsURL.appendingPathComponent("corpus")
 
+        // Create corpus directory if missing
         if !fileManager.fileExists(atPath: corpusURL.path) {
             do {
                 try fileManager.createDirectory(at: corpusURL, withIntermediateDirectories: true, attributes: nil)
@@ -31,15 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        if !fileManager.fileExists(atPath: documentsURL.path) {
-            print("❌ Documents directory does not exist: \(documentsURL.path)")
-        } else if chdir(documentsURL.path) != 0 {
+        // Set working directory to Documents
+        if chdir(documentsURL.path) != 0 {
             print("❌ Failed to change working directory to: \(documentsURL.path)")
         } else {
             print("📂 Working directory set to: \(documentsURL.path)")
-            print("ℹ️ Current working directory is now: \(FileManager.default.currentDirectoryPath)")
         }
 
+        // Log contents of corpus directory
         do {
             let files = try fileManager.contentsOfDirectory(atPath: corpusURL.path)
             print("📁 Corpus directory contains: \(files)")
@@ -47,22 +39,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("❌ Failed to list corpus directory: \(error)")
         }
 
+        // Copy built-in seeds from bundle into corpus
         copySeedFilesToCorpus(from: fileManager, to: corpusURL)
+
+        // Show UI
+        let contentView = ContentView()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UIHostingController(rootView: contentView)
+        window?.makeKeyAndVisible()
 
         return true
     }
 
     func copySeedFilesToCorpus(from fileManager: FileManager, to corpusURL: URL) {
-        if let resourcePath = Bundle.main.resourcePath {
-            print("App bundle resource path: \(resourcePath)")
-            do {
-                let files = try fileManager.contentsOfDirectory(atPath: resourcePath)
-                print("Files in bundle resource path: \(files)")
-            } catch {
-                print("Failed to list bundle resource path: \(error)")
-            }
-        }
-
         let seedImageNames = ["seed1.jpg", "seed2.png"]
 
         for imageName in seedImageNames {
