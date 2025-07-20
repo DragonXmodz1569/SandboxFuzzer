@@ -7,8 +7,6 @@
 #include <fcntl.h>
 #include "../SandboxFuzzer-Bridging-Header.h"
 
-extern _Atomic uint64_t gFuzzIterationCount;
-
 // Stub for private parser call
 extern void RTSPParserProcess(CFHTTPMessageRef msg);
 
