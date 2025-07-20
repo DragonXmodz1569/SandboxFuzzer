@@ -1,30 +1,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var fuzzManager: FuzzManager
-
+    @EnvironmentObject var manager: FuzzManager
     var body: some View {
         VStack(spacing: 20) {
-            Text("Fuzz iterations: \(fuzzManager.iterations)")
+            Text("Iterations: \(manager.iterations)")
                 .font(.title2)
-                .padding()
-
-            if fuzzManager.isRunning {
-                Button("Stop Fuzzer") {
-                    fuzzManager.stopFuzz()
-                }
-                .padding()
-                .background(Color.red.opacity(0.8))
-                .foregroundColor(.white)
-                .cornerRadius(8)
+            if manager.isRunning {
+                Button("Stop") { manager.stopFuzz() }
+                    .padding().background(Color.red).foregroundColor(.white).cornerRadius(8)
             } else {
-                Button("Start Fuzzer") {
-                    fuzzManager.startFuzz()
-                }
-                .padding()
-                .background(Color.green.opacity(0.8))
-                .foregroundColor(.white)
-                .cornerRadius(8)
+                Button("Start") { manager.startFuzz() }
+                    .padding().background(Color.green).foregroundColor(.white).cornerRadius(8)
             }
         }
         .padding()

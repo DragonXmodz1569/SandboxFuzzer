@@ -1,4 +1,3 @@
-// FuzzerHarness.c
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -6,71 +5,58 @@
 #include <dirent.h>
 #include "common.h"
 
-// LibFuzzer entry point
+// libFuzzer entrypoint
 extern int FuzzerMain(int argc, char **argv);
 
-// Exposed to Swift
+// Called from Swift
 int FuzzerHarness(const char *corpus_dir) {
-    // Verify corpus directory exists
+    fprintf(stderr, "🔍 [Harness] corpus_dir = '%s'\n", corpus_dir);
     struct stat st;
     if (stat(corpus_dir, &st) != 0 || !S_ISDIR(st.st_mode)) {
-        fprintf(stderr, "❌ ERROR: Corpus directory \"%s\" not found or not a directory\n", corpus_dir);
+        fprintf(stderr, "❌ ERROR: Corpus directory '%s' not found\n", corpus_dir);
         return 1;
     }
 
-    // List corpus contents
     DIR *dir = opendir(corpus_dir);
-    if (!dir) {
-        perror("opendir");
-        return 1;
-    }
-    printf("📁 Corpus directory contents:\n");
-    struct dirent *entry;
-    int file_count = 0;
-    while ((entry = readdir(dir)) != NULL) {
-        if (entry->d_type == DT_REG) {
-            file_count++;
-            char fullpath[512];
-            snprintf(fullpath, sizeof(fullpath), "%s/%s", corpus_dir, entry->d_name);
-            FILE *fp = fopen(fullpath, "rb");
-            if (fp) {
-                fseek(fp, 0, SEEK_END);
-                long size = ftell(fp);
-                fclose(fp);
-                printf("  📄 %s - %ld bytes\n", entry->d_name, size);
+    if (!dir) { perror("opendir"); return 1; }
+    fprintf(stderr, "📁 Corpus contents:\n");
+    struct dirent *e;
+    int count=0;
+    while ((e = readdir(dir))) {
+        if (e->d_type == DT_REG) {
+            count++;
+            char path[512];
+            snprintf(path, sizeof(path), "%s/%s", corpus_dir, e->d_name);
+            FILE *f = fopen(path, "rb");
+            if (f) { fseek(f,0,SEEK_END); long sz=ftell(f); fclose(f);
+                fprintf(stderr, "  📄 %s - %ld bytes\n", e->d_name, sz);
             }
         }
     }
     closedir(dir);
-
-    if (file_count == 0) {
-        printf("⚠️ Corpus directory empty, creating dummy seed file.\n");
-        char dummy_path[512];
-        snprintf(dummy_path, sizeof(dummy_path), "%s/seed", corpus_dir);
-        FILE *fp = fopen(dummy_path, "wb");
-        if (fp) {
-            const char *seed = "FUZZ_SEED";
-            fwrite(seed, 1, strlen(seed), fp);
-            fclose(fp);
-            printf("✅ Dummy seed file created at: %s\n", dummy_path);
-            file_count = 1;
+    if (count==0) {
+        fprintf(stderr,"⚠️ Empty corpus, creating dummy seed\n");
+        char dp[512]; snprintf(dp,sizeof(dp),"%s/seed",corpus_dir);
+        FILE *f=fopen(dp,"wb");
+        if(f){ fwrite("FUZZ_SEED",1,9,f); fclose(f);
+            fprintf(stderr,"✅ Dummy seed at %s\n",dp);
+            count=1;
         }
     }
 
-    // Prepare argv for libFuzzer
     char *argv_new[6];
     argv_new[0] = "SandboxFuzzer";
     argv_new[1] = "-max_len=4096";
     argv_new[2] = "-print_final_stats=1";
     argv_new[3] = "-artifact_prefix=.";
-    argv_new[4] = (char *)corpus_dir;
+    argv_new[4] = (char*)corpus_dir;
     argv_new[5] = NULL;
 
-    printf("🚀 Starting FuzzerMain with corpus: %s\n", corpus_dir);
+    fprintf(stderr,"🚀 Starting FuzzerMain with %s\n",corpus_dir);
     return FuzzerMain(5, argv_new);
 }
 
-// Expose atomic counter to Swift
+// expose to Swift
 uint64_t atomicLoadIterationCount(void) {
     return atomicLoadIterationCount_impl();
 }
