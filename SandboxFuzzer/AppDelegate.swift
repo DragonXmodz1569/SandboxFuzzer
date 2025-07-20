@@ -1,6 +1,6 @@
 import UIKit
 import SwiftUI
-import Darwin  // for chdir()
+import Darwin // for chdir()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,32 +17,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create corpus directory if missing
         if !fileManager.fileExists(atPath: corpusURL.path) {
             do {
-                try fileManager.createDirectory(at: corpusURL, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: corpusURL, withIntermediateDirectories: true)
                 print("✅ Created corpus directory at: \(corpusURL.path)")
             } catch {
                 print("❌ Failed to create corpus directory: \(error)")
             }
+        } else {
+            print("📂 Corpus directory already exists at: \(corpusURL.path)")
         }
 
-        // Set working directory to Documents
+        // Set working directory to Documents folder for libFuzzer relative path usage
         if chdir(documentsURL.path) != 0 {
             print("❌ Failed to change working directory to: \(documentsURL.path)")
         } else {
-            print("📂 Working directory set to: \(documentsURL.path)")
+            print("📁 Working directory set to: \(FileManager.default.currentDirectoryPath)")
         }
 
-        // Log contents of corpus directory
+        // List corpus files with sizes for debug
         do {
-            let files = try fileManager.contentsOfDirectory(atPath: corpusURL.path)
-            print("📁 Corpus directory contains: \(files)")
+            let corpusFiles = try fileManager.contentsOfDirectory(at: corpusURL, includingPropertiesForKeys: [.fileSizeKey], options: [])
+            for fileURL in corpusFiles {
+                let size = try fileURL.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? -1
+                print("📄 \(fileURL.lastPathComponent) - \(size) bytes")
+            }
         } catch {
-            print("❌ Failed to list corpus directory: \(error)")
+            print("❌ Failed to list corpus files: \(error)")
         }
 
-        // Copy built-in seeds from bundle into corpus
+        // Copy bundled seed files to corpus folder if missing
         copySeedFilesToCorpus(from: fileManager, to: corpusURL)
 
-        // Show UI
+        // Setup SwiftUI UI
         let contentView = ContentView()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UIHostingController(rootView: contentView)
@@ -52,23 +57,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func copySeedFilesToCorpus(from fileManager: FileManager, to corpusURL: URL) {
-        let seedImageNames = ["seed1.jpg", "seed2.png"]
+        let seedFiles = ["seed1.jpg", "seed2.png"]
 
-        for imageName in seedImageNames {
-            if let bundleURL = Bundle.main.url(forResource: imageName, withExtension: nil) {
-                let destURL = corpusURL.appendingPathComponent(imageName)
+        guard let bundleResourcePath = Bundle.main.resourcePath else {
+            print("❌ Could not get app bundle resource path")
+            return
+        }
+
+        do {
+            let bundleFiles = try fileManager.contentsOfDirectory(atPath: bundleResourcePath)
+            print("🗂️ App bundle resource files: \(bundleFiles)")
+        } catch {
+            print("❌ Failed to list app bundle resources: \(error)")
+        }
+
+        for seedFile in seedFiles {
+            if let sourceURL = Bundle.main.url(forResource: seedFile, withExtension: nil) {
+                let destURL = corpusURL.appendingPathComponent(seedFile)
                 if !fileManager.fileExists(atPath: destURL.path) {
                     do {
-                        try fileManager.copyItem(at: bundleURL, to: destURL)
-                        print("✅ Copied \(imageName) to corpus folder")
+                        try fileManager.copyItem(at: sourceURL, to: destURL)
+                        print("✅ Copied \(seedFile) to corpus folder")
                     } catch {
-                        print("❌ Failed to copy \(imageName): \(error)")
+                        print("❌ Failed to copy \(seedFile): \(error)")
                     }
                 } else {
-                    print("ℹ️ \(imageName) already exists in corpus folder")
+                    print("ℹ️ \(seedFile) already exists in corpus folder")
                 }
             } else {
-                print("❌ \(imageName) not found in app bundle")
+                print("❌ \(seedFile) not found in app bundle")
             }
         }
     }
