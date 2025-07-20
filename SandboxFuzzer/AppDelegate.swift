@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIHostingController(rootView: contentView)
         window?.makeKeyAndVisible()
 
-        // Your existing code for corpus folder creation and chdir
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let corpusURL = documentsURL.appendingPathComponent("corpus")
@@ -32,12 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        if chdir(documentsURL.path) != 0 {
+        if !fileManager.fileExists(atPath: documentsURL.path) {
+            print("❌ Documents directory does not exist: \(documentsURL.path)")
+        } else if chdir(documentsURL.path) != 0 {
             print("❌ Failed to change working directory to: \(documentsURL.path)")
         } else {
             print("📂 Working directory set to: \(documentsURL.path)")
-            let currentDir = FileManager.default.currentDirectoryPath
-            print("ℹ️ Current working directory is now: \(currentDir)")
+            print("ℹ️ Current working directory is now: \(FileManager.default.currentDirectoryPath)")
         }
 
         do {
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        let seedImageNames = ["seed1.png", "seed2.jpg"]
+        let seedImageNames = ["seed1.jpg", "seed2.png"]
 
         for imageName in seedImageNames {
             if let bundleURL = Bundle.main.url(forResource: imageName, withExtension: nil) {
@@ -83,5 +83,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }

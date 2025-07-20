@@ -11,7 +11,6 @@
 		5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */; };
 		5D77DE5C2E2C8816000C6058 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE5B2E2C8816000C6058 /* ImageIO.framework */; };
 		5D77DE922E2CDF79000C6058 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE912E2CDF79000C6058 /* CoreFoundation.framework */; };
-		5D77DE982E2CE9D7000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */; };
 		5D77DE992E2CEBB6000C6058 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
 		5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
 		5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
@@ -56,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D77DE982E2CE9D7000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */,
 				5D77DE922E2CDF79000C6058 /* CoreFoundation.framework in Frameworks */,
 				5D77DE5C2E2C8816000C6058 /* ImageIO.framework in Frameworks */,
 			);

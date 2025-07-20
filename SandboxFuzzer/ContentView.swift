@@ -1,9 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var iterations: UInt64 = 0
     @State private var showAlert = false
     
+    // Assuming AtomicCounter is implemented somewhere else and works correctly.
+    // Or replace with a simple counter for demo.
     let atomicLoadIterationCount = AtomicCounter()
 
     private let updates = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()

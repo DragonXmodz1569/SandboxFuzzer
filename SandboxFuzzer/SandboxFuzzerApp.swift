@@ -6,41 +6,44 @@ struct SandboxFuzzerApp: App {
         WindowGroup {
             ContentView()
                 .task {
-                    // 1) Ensure corpus folder exists in the app’s Documents
                     let fm = FileManager.default
-                    guard let docs = fm.urls(
-                            for: .documentDirectory,
-                            in: .userDomainMask
-                          ).first else {
+                    guard let docs = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
                         fatalError("Unable to locate Documents directory")
                     }
                     let corpus = docs.appendingPathComponent("corpus")
                     if !fm.fileExists(atPath: corpus.path) {
-                        try! fm.createDirectory(
-                            at: corpus,
-                            withIntermediateDirectories: true,
-                            attributes: nil
-                        )
-                        print("🗂 Created corpus at \(corpus.path)")
+                        do {
+                            try fm.createDirectory(at: corpus, withIntermediateDirectories: true, attributes: nil)
+                            print("🗂 Created corpus at \(corpus.path)")
+                        } catch {
+                            print("❌ Failed to create corpus directory: \(error)")
+                        }
                     }
 
-                    // 2) Build C-style argv, passing corpus path
+                    do {
+                        let files = try fm.contentsOfDirectory(atPath: corpus.path)
+                        print("Corpus folder contains: \(files)")
+                    } catch {
+                        print("❌ Failed to list corpus folder: \(error)")
+                    }
+
                     let args = [
                         "SandboxFuzzer",
                         "--corpus-path=\(corpus.path)",
-                        // you can also append "--harness=imtranscoder" or similar if desired
                     ]
+
+                    // Allocate argv properly
                     let cstrs = args.map { strdup($0) }
                     let argc = Int32(cstrs.count)
-                    let argv = UnsafeMutablePointer(mutating:
-                        cstrs.withUnsafeBufferPointer { $0.baseAddress! }
-                    )
 
-                    // 3) Call the shim, which runs libFuzzer
+                    let argv = UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>.allocate(capacity: cstrs.count)
+                    for i in 0..<cstrs.count {
+                        argv[i] = cstrs[i]
+                    }
+
                     let exitCode = FuzzerMain(argc, argv)
                     print("🔚 FuzzerMain exited: \(exitCode)")
 
-                    // 4) Free memory
                     for ptr in cstrs { free(ptr) }
                     argv.deallocate()
                 }
