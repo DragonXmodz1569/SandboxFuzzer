@@ -1,13 +1,11 @@
 #include "common.h"
-#include "PathHelper.h"   // include the helper header
+#include "PathHelper.h"
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <stdlib.h>       // for free()
-#include <limits.h>       // for PATH_MAX
-
-// Declare your harness function and fuzzer entrypoint as usual
+#include <stdlib.h>
+#include <limits.h>
 
 int harness_imtranscoder_test(const uint8_t *data, size_t size);
 
@@ -16,9 +14,9 @@ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
     return harness_imtranscoder_test(data, size);
 }
 
+int LLVMFuzzerRunDriver(int *argc, char ***argv, int (*UserCb)(const uint8_t *, size_t));
+
 int FuzzerMain(int argc, char **argv) {
-    extern int LLVMFuzzerRunDriver(int *argc, char ***argv,
-                                   int (*UserCb)(const uint8_t *, size_t));
     return LLVMFuzzerRunDriver(&argc, &argv, LLVMFuzzerTestOneInput);
 }
 
@@ -40,11 +38,23 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    // Build default corpus path
+    // Build path to SandboxFuzzer/corpus
     snprintf(default_corpus, sizeof(default_corpus), "%s/corpus", docsPath);
+    char sandboxDir[PATH_MAX];
+    snprintf(sandboxDir, sizeof(sandboxDir), "%s/SandboxFuzzer", docsPath);
 
-    // Create the directory if it doesn't exist
     struct stat st;
+
+    // Create SandboxFuzzer directory if it doesn't exist
+    if (stat(sandboxDir, &st) != 0) {
+        if (mkdir(sandboxDir, 0777) != 0) {
+            perror("ERROR: Could not create SandboxFuzzer directory");
+            free((void *)docsPath);
+            return 1;
+        }
+    }
+
+    // Create corpus directory if it doesn't exist
     if (stat(default_corpus, &st) != 0) {
         if (mkdir(default_corpus, 0777) != 0) {
             perror("ERROR: Could not create corpus directory");
@@ -58,6 +68,5 @@ int main(int argc, char **argv) {
     }
 
     free((void *)docsPath);
-
     return FuzzerMain(argc, argv);
 }

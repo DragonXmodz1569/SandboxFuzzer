@@ -11,12 +11,12 @@
 		5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */; };
 		5D77DE5C2E2C8816000C6058 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE5B2E2C8816000C6058 /* ImageIO.framework */; };
 		5D77DE922E2CDF79000C6058 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE912E2CDF79000C6058 /* CoreFoundation.framework */; };
-		5D77DE992E2CEBB6000C6058 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
 		5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
 		5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
 		5D77DEA12E2CEFFE000C6058 /* PathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DEA02E2CEFFE000C6058 /* PathHelper.m */; };
-		5DB5B1272E2D5D57003CDCF3 /* corpus in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5B1262E2D5D57003CDCF3 /* corpus */; };
 		5DB5B1292E2D7708003CDCF3 /* FuzzerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB5B1282E2D7708003CDCF3 /* FuzzerEngine.swift */; };
+		5DB5B12D2E2D7FC3003CDCF3 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5DB5B12C2E2D7FC3003CDCF3 /* FuzzerMainBridge.c */; };
+		5DB5B12F2E2D95D7003CDCF3 /* corpus in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5B12E2E2D95D7003CDCF3 /* corpus */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,6 @@
 		5D31BF922E2BD6F1007699A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5D31BF942E2BD6F3007699A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FuzzerMainBridge.c; sourceTree = "<group>"; };
 		5D31CBB92E2BE15A007699A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D31CBBB2E2BE188007699A8 /* SandboxFuzzer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SandboxFuzzer-Bridging-Header.h"; sourceTree = "<group>"; };
 		5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libclang_rt.fuzzer_ios.a; sourceTree = "<group>"; };
@@ -45,8 +44,9 @@
 		5D77DE9D2E2CEFA8000C6058 /* PathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathHelper.h; sourceTree = "<group>"; };
 		5D77DEA02E2CEFFE000C6058 /* PathHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathHelper.m; sourceTree = "<group>"; };
 		5D7B7B1B2E2D553F000AD92D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5DB5B1262E2D5D57003CDCF3 /* corpus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = corpus; sourceTree = "<group>"; };
 		5DB5B1282E2D7708003CDCF3 /* FuzzerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzerEngine.swift; sourceTree = "<group>"; };
+		5DB5B12C2E2D7FC3003CDCF3 /* FuzzerMainBridge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FuzzerMainBridge.c; sourceTree = "<group>"; };
+		5DB5B12E2E2D95D7003CDCF3 /* corpus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = corpus; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 		5D31BF8F2E2BD6F1007699A8 /* SandboxFuzzer */ = {
 			isa = PBXGroup;
 			children = (
-				5DB5B1262E2D5D57003CDCF3 /* corpus */,
+				5DB5B12E2E2D95D7003CDCF3 /* corpus */,
 				5D7B7B1B2E2D553F000AD92D /* Info.plist */,
 				5D77DE8D2E2CDD26000C6058 /* FuzzerHarness.c */,
 				5D77DE592E2C84AE000C6058 /* HarnessWrapper.c */,
@@ -124,7 +124,7 @@
 		5D77DE3B2E2C3381000C6058 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
-				5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */,
+				5DB5B12C2E2D7FC3003CDCF3 /* FuzzerMainBridge.c */,
 				5D77DE9D2E2CEFA8000C6058 /* PathHelper.h */,
 				5D77DEA02E2CEFFE000C6058 /* PathHelper.m */,
 			);
@@ -203,7 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */,
-				5DB5B1272E2D5D57003CDCF3 /* corpus in Resources */,
+				5DB5B12F2E2D95D7003CDCF3 /* corpus in Resources */,
 				5D31BF952E2BD6F3007699A8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,8 +218,8 @@
 				5D77DEA12E2CEFFE000C6058 /* PathHelper.m in Sources */,
 				5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */,
 				5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */,
+				5DB5B12D2E2D7FC3003CDCF3 /* FuzzerMainBridge.c in Sources */,
 				5DB5B1292E2D7708003CDCF3 /* FuzzerEngine.swift in Sources */,
-				5D77DE992E2CEBB6000C6058 /* FuzzerMainBridge.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
