@@ -15,8 +15,7 @@
 		5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
 		5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
 		5D77DEA12E2CEFFE000C6058 /* PathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DEA02E2CEFFE000C6058 /* PathHelper.m */; };
-		5D77DEB22E2D03C8000C6058 /* seed1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D77DEAE2E2D03C8000C6058 /* seed1.jpg */; };
-		5D77DEB32E2D03C8000C6058 /* seed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D77DEAF2E2D03C8000C6058 /* seed2.png */; };
+		5DB5B1272E2D5D57003CDCF3 /* corpus in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5B1262E2D5D57003CDCF3 /* corpus */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,9 +43,8 @@
 		5D77DE9B2E2CECCB000C6058 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		5D77DE9D2E2CEFA8000C6058 /* PathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathHelper.h; sourceTree = "<group>"; };
 		5D77DEA02E2CEFFE000C6058 /* PathHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathHelper.m; sourceTree = "<group>"; };
-		5D77DEAE2E2D03C8000C6058 /* seed1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = seed1.jpg; sourceTree = "<group>"; };
-		5D77DEAF2E2D03C8000C6058 /* seed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seed2.png; sourceTree = "<group>"; };
 		5D7B7B1B2E2D553F000AD92D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DB5B1262E2D5D57003CDCF3 /* corpus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = corpus; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +80,8 @@
 		5D31BF8F2E2BD6F1007699A8 /* SandboxFuzzer */ = {
 			isa = PBXGroup;
 			children = (
+				5DB5B1262E2D5D57003CDCF3 /* corpus */,
 				5D7B7B1B2E2D553F000AD92D /* Info.plist */,
-				5D77DEB12E2D03C8000C6058 /* Resources */,
 				5D77DE8D2E2CDD26000C6058 /* FuzzerHarness.c */,
 				5D77DE592E2C84AE000C6058 /* HarnessWrapper.c */,
 				5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */,
@@ -140,23 +138,6 @@
 				5D77DE9B2E2CECCB000C6058 /* common.h */,
 			);
 			path = Harnesses;
-			sourceTree = "<group>";
-		};
-		5D77DEB02E2D03C8000C6058 /* corpus */ = {
-			isa = PBXGroup;
-			children = (
-				5D77DEAE2E2D03C8000C6058 /* seed1.jpg */,
-				5D77DEAF2E2D03C8000C6058 /* seed2.png */,
-			);
-			path = corpus;
-			sourceTree = "<group>";
-		};
-		5D77DEB12E2D03C8000C6058 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5D77DEB02E2D03C8000C6058 /* corpus */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +200,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */,
-				5D77DEB22E2D03C8000C6058 /* seed1.jpg in Resources */,
+				5DB5B1272E2D5D57003CDCF3 /* corpus in Resources */,
 				5D31BF952E2BD6F3007699A8 /* Assets.xcassets in Resources */,
-				5D77DEB32E2D03C8000C6058 /* seed2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

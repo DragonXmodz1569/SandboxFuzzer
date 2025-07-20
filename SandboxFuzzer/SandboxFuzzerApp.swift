@@ -2,51 +2,68 @@ import SwiftUI
 
 @main
 struct SandboxFuzzerApp: App {
+    @StateObject private var fuzzManager = FuzzManager()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .task {
-                    let fm = FileManager.default
-                    guard let docs = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
-                        fatalError("Unable to locate Documents directory")
-                    }
-                    let corpus = docs.appendingPathComponent("corpus")
-                    if !fm.fileExists(atPath: corpus.path) {
-                        do {
-                            try fm.createDirectory(at: corpus, withIntermediateDirectories: true, attributes: nil)
-                            print("🗂 Created corpus at \(corpus.path)")
-                        } catch {
-                            print("❌ Failed to create corpus directory: \(error)")
-                        }
-                    }
-
-                    do {
-                        let files = try fm.contentsOfDirectory(atPath: corpus.path)
-                        print("Corpus folder contains: \(files)")
-                    } catch {
-                        print("❌ Failed to list corpus folder: \(error)")
-                    }
-
-                    let args = [
-                        "SandboxFuzzer",
-                        "--corpus-path=\(corpus.path)",
-                    ]
-
-                    // Allocate argv properly
-                    let cstrs = args.map { strdup($0) }
-                    let argc = Int32(cstrs.count)
-
-                    let argv = UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>.allocate(capacity: cstrs.count)
-                    for i in 0..<cstrs.count {
-                        argv[i] = cstrs[i]
-                    }
-
-                    let exitCode = FuzzerMain(argc, argv)
-                    print("🔚 FuzzerMain exited: \(exitCode)")
-
-                    for ptr in cstrs { free(ptr) }
-                    argv.deallocate()
-                }
+                .environmentObject(fuzzManager)
         }
+    }
+}
+
+class FuzzManager: ObservableObject {
+    @Published var iterations: UInt64 = 0
+    @Published var isRunning = false
+
+    private var timer: Timer?
+    private let corpusPath: String
+
+    init() {
+        // Setup Documents/corpus
+        let fm = FileManager.default
+        let docs = fm.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let corpusURL = docs.appendingPathComponent("corpus")
+        corpusPath = corpusURL.path
+
+        try? fm.createDirectory(at: corpusURL, withIntermediateDirectories: true)
+
+        // Copy bundled seeds if missing
+        for seed in ["seed1.jpg", "seed2.png"] {
+            if let src = Bundle.main.url(forResource: seed, withExtension: nil) {
+                let dst = corpusURL.appendingPathComponent(seed)
+                if !fm.fileExists(atPath: dst.path) {
+                    try? fm.copyItem(at: src, to: dst)
+                }
+            }
+        }
+    }
+
+    func startFuzz() {
+        guard !isRunning else { return }
+        isRunning = true
+
+        // Poll iteration count
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                self.iterations = atomicLoadIterationCount()
+            }
+        }
+
+        // Launch harness
+        DispatchQueue.global(qos: .background).async {
+            let exitCode = FuzzerHarness(self.corpusPath)
+            print("🔚 Fuzzer exited with code: \(exitCode)")
+            DispatchQueue.main.async {
+                self.isRunning = false
+                self.timer?.invalidate()
+            }
+        }
+    }
+
+    func stopFuzz() {
+        // No built‑in stop; just stop UI updates
+        timer?.invalidate()
+        isRunning = false
     }
 }

@@ -1,19 +1,17 @@
+// SandboxFuzzer-Bridging-Header.h
+
 #ifndef SandboxFuzzer_Bridging_Header_h
 #define SandboxFuzzer_Bridging_Header_h
 
 #include <stdint.h>
-#include "common.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+// From common.c
 uint64_t atomicLoadIterationCount(void);
-int FuzzerMain(int argc, char **argv);  // <-- match this to actual function
-uint64_t GetFuzzIterationCount(void);
 
-#ifdef __cplusplus
-}
-#endif
+// Our harness entrypoint
+int FuzzerHarness(const char *corpus_dir);
+
+// Core libFuzzer entrypoint (linked from the harness library)
+extern int FuzzerMain(int argc, char **argv);
 
 #endif /* SandboxFuzzer_Bridging_Header_h */
