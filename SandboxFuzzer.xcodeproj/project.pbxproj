@@ -20,6 +20,7 @@
 		5D77DE952E2CDF8C000C6058 /* HarnessWrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE592E2C84AE000C6058 /* HarnessWrapper.c */; };
 		5D77DE962E2CDF90000C6058 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
 		5D77DE972E2CDF94000C6058 /* atomicBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE562E2C82AA000C6058 /* atomicBridge.c */; };
+		5D77DE982E2CE9D7000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D77DE982E2CE9D7000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */,
 				5D77DE922E2CDF79000C6058 /* CoreFoundation.framework in Frameworks */,
 				5D77DE5C2E2C8816000C6058 /* ImageIO.framework in Frameworks */,
 			);
@@ -382,12 +384,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/SandboxFuzzer";
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-fsanitize=fuzzer-no-link";
 				OTHER_LDFLAGS = (
-					"\"-L \\\"${PROJECT_DIR}\\\"\"",
-					"-lclang_rt.fuzzer_ios",
+					"\"${PROJECT_DIR}/SandboxFuzzer/libclang_rt.fuzzer_ios.a\"",
 					"-lc++",
 					"-ObjC",
 				);
@@ -428,12 +429,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/SandboxFuzzer";
 				MARKETING_VERSION = 1.0;
 				OTHER_CFLAGS = "-fsanitize=fuzzer-no-link";
 				OTHER_LDFLAGS = (
-					"\"-L \\\"${PROJECT_DIR}\\\"\"",
-					"-lclang_rt.fuzzer_ios",
+					"\"${PROJECT_DIR}/SandboxFuzzer/libclang_rt.fuzzer_ios.a\"",
 					"-lc++",
 					"-ObjC",
 				);

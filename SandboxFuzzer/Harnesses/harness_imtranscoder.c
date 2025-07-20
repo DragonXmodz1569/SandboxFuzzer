@@ -2,10 +2,12 @@
 #include <ImageIO/ImageIO.h>
 #include "common.h"
 
-void harness_imtranscoder_test(const uint8_t *data, size_t size) {
+int harness_imtranscoder_test(const uint8_t *data, size_t size);
+
+int harness_imtranscoder_test(const uint8_t *data, size_t size) {
     // Basic image processing implementation
     CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, data, size, NULL);
-    if (!provider) return;
+    if (!provider) return 0;
     
     CGImageSourceRef source = CGImageSourceCreateWithDataProvider(provider, NULL);
     if (source) {
@@ -15,10 +17,10 @@ void harness_imtranscoder_test(const uint8_t *data, size_t size) {
     }
     
     CGDataProviderRelease(provider);
+    return 0;
 }
 
 int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
     gFuzzIterationCount++;
-    harness_imtranscoder_test(data, size);
-    return 0;
+    return harness_imtranscoder_test(data, size);
 }

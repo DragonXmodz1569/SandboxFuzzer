@@ -6,8 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-// Define the shared iteration counter (only here)
-_Atomic(uint64_t) gFuzzIterationCount = 0;
+// Declare the harness function
+int harness_imtranscoder_test(const uint8_t *data, size_t size);
 
 // libFuzzer callback: defined exactly once
 int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
@@ -15,7 +15,7 @@ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
     return harness_imtranscoder_test(data, size);
 }
 
-// Shim that calls into libFuzzer’s driver
+// Shim that calls into libFuzzer's driver
 int FuzzerMain(int argc, char **argv) {
     extern int LLVMFuzzerRunDriver(int *argc, char ***argv,
                                     int (*UserCb)(const uint8_t *, size_t));
