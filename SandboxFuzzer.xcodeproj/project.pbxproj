@@ -10,17 +10,11 @@
 		5D31BF952E2BD6F3007699A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF942E2BD6F3007699A8 /* Assets.xcassets */; };
 		5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */; };
 		5D77DE5C2E2C8816000C6058 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE5B2E2C8816000C6058 /* ImageIO.framework */; };
-		5D77DE622E2CDC80000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
-		5D77DE632E2CDC83000C6058 /* harness_airplay_rtsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */; };
-		5D77DE642E2CDC86000C6058 /* harness_appstored.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE472E2C35A7000C6058 /* harness_appstored.c */; };
-		5D77DE902E2CDE28000C6058 /* SanitizerStubs.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE522E2C8129000C6058 /* SanitizerStubs.c */; };
 		5D77DE922E2CDF79000C6058 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE912E2CDF79000C6058 /* CoreFoundation.framework */; };
-		5D77DE932E2CDF7F000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
-		5D77DE942E2CDF88000C6058 /* FuzzerHarness.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE8D2E2CDD26000C6058 /* FuzzerHarness.c */; };
-		5D77DE952E2CDF8C000C6058 /* HarnessWrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE592E2C84AE000C6058 /* HarnessWrapper.c */; };
-		5D77DE962E2CDF90000C6058 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
-		5D77DE972E2CDF94000C6058 /* atomicBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE562E2C82AA000C6058 /* atomicBridge.c */; };
 		5D77DE982E2CE9D7000C6058 /* libclang_rt.fuzzer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */; };
+		5D77DE992E2CEBB6000C6058 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
+		5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
+		5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +39,7 @@
 		5D77DE5B2E2C8816000C6058 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		5D77DE8D2E2CDD26000C6058 /* FuzzerHarness.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FuzzerHarness.c; sourceTree = "<group>"; };
 		5D77DE912E2CDF79000C6058 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		5D77DE9B2E2CECCB000C6058 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +128,7 @@
 				5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */,
 				5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */,
 				5D77DE472E2C35A7000C6058 /* harness_appstored.c */,
+				5D77DE9B2E2CECCB000C6058 /* common.h */,
 			);
 			path = Harnesses;
 			sourceTree = "<group>";
@@ -223,15 +219,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D77DE972E2CDF94000C6058 /* atomicBridge.c in Sources */,
-				5D77DE962E2CDF90000C6058 /* FuzzerMainBridge.c in Sources */,
-				5D77DE952E2CDF8C000C6058 /* HarnessWrapper.c in Sources */,
-				5D77DE942E2CDF88000C6058 /* FuzzerHarness.c in Sources */,
-				5D77DE932E2CDF7F000C6058 /* common.c in Sources */,
-				5D77DE902E2CDE28000C6058 /* SanitizerStubs.c in Sources */,
-				5D77DE642E2CDC86000C6058 /* harness_appstored.c in Sources */,
-				5D77DE632E2CDC83000C6058 /* harness_airplay_rtsp.c in Sources */,
-				5D77DE622E2CDC80000C6058 /* harness_imtranscoder.c in Sources */,
+				5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */,
+				5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */,
+				5D77DE992E2CEBB6000C6058 /* FuzzerMainBridge.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@ int harness_imtranscoder_test(const uint8_t *data, size_t size);
 
 // libFuzzer callback: defined exactly once
 int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
-    // Dispatch to the desired harness
+    gFuzzIterationCount++;
     return harness_imtranscoder_test(data, size);
 }
 
@@ -23,7 +23,7 @@ int FuzzerMain(int argc, char **argv) {
 }
 
 // Default corpus path if not overridden
-static const char *default_corpus = "/var/mobile/Documents/corpus/";
+static const char *default_corpus = "./corpus/";
 
 // Look for "--corpus-path=" in argv
 static const char *choose_corpus_dir(int argc, char **argv) {
