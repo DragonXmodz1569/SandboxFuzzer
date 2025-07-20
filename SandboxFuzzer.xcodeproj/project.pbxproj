@@ -294,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/SandboxFuzzer/Info.plist\n\n";
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -352,7 +352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/SandboxFuzzer/Info.plist\n\n";
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -382,7 +382,7 @@
 					"$(PROJECT_DIR)/SandboxFuzzer/Bridge",
 					"$(PROJECT_DIR)/SandboxFuzzer/HarnessWrapper.c",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/SandboxFuzzer/Info.plist\n\n";
+				INFOPLIST_FILE = "$(SRCROOT)/SandboxFuzzer/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -429,7 +429,7 @@
 					"$(PROJECT_DIR)/SandboxFuzzer/Bridge",
 					"$(PROJECT_DIR)/SandboxFuzzer/HarnessWrapper.c",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/SandboxFuzzer/Info.plist\n\n";
+				INFOPLIST_FILE = "$(SRCROOT)/SandboxFuzzer/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
