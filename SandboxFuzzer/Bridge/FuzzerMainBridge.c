@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdlib.h>       // for free()
+#include <limits.h>       // for PATH_MAX
 
 // Declare your harness function and fuzzer entrypoint as usual
 
@@ -21,7 +22,7 @@ int FuzzerMain(int argc, char **argv) {
     return LLVMFuzzerRunDriver(&argc, &argv, LLVMFuzzerTestOneInput);
 }
 
-static const char *default_corpus = "./corpus";
+static char default_corpus[PATH_MAX] = {0};
 
 static const char *choose_corpus_dir(int argc, char **argv) {
     for (int i = 1; i < argc; i++) {
@@ -39,20 +40,24 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    if (chdir(docsPath) != 0) {
-        fprintf(stderr, "ERROR: Failed to chdir to %s\n", docsPath);
-        free((void *)docsPath);
-        return 1;
+    // Build default corpus path
+    snprintf(default_corpus, sizeof(default_corpus), "%s/corpus", docsPath);
+
+    // Create the directory if it doesn't exist
+    struct stat st;
+    if (stat(default_corpus, &st) != 0) {
+        if (mkdir(default_corpus, 0777) != 0) {
+            perror("ERROR: Could not create corpus directory");
+            free((void *)docsPath);
+            return 1;
+        } else {
+            printf("INFO: Created corpus directory at %s\n", default_corpus);
+        }
+    } else {
+        printf("INFO: corpus directory exists at %s\n", default_corpus);
     }
 
     free((void *)docsPath);
-
-    const char *dir = choose_corpus_dir(argc, argv);
-    struct stat st;
-    if (stat(dir, &st) != 0) {
-        fprintf(stderr, "ERROR: The required directory \"%s\" does not exist\n", dir);
-        return 1;
-    }
 
     return FuzzerMain(argc, argv);
 }
