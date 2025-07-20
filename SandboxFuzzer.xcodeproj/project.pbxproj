@@ -15,6 +15,10 @@
 		5D77DE992E2CEBB6000C6058 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
 		5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE412E2C3556000C6058 /* common.c */; };
 		5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
+		5D77DEA12E2CEFFE000C6058 /* PathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DEA02E2CEFFE000C6058 /* PathHelper.m */; };
+		5D77DEA62E2CF18C000C6058 /* seed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D77DEA42E2CF18C000C6058 /* seed2.png */; };
+		5D77DEA72E2CF18C000C6058 /* seed1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D77DEA52E2CF18C000C6058 /* seed1.jpg */; };
+		5D77DEA92E2CF3F8000C6058 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D77DEA82E2CF3F8000C6058 /* info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,11 @@
 		5D77DE8D2E2CDD26000C6058 /* FuzzerHarness.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FuzzerHarness.c; sourceTree = "<group>"; };
 		5D77DE912E2CDF79000C6058 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5D77DE9B2E2CECCB000C6058 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		5D77DE9D2E2CEFA8000C6058 /* PathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathHelper.h; sourceTree = "<group>"; };
+		5D77DEA02E2CEFFE000C6058 /* PathHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathHelper.m; sourceTree = "<group>"; };
+		5D77DEA42E2CF18C000C6058 /* seed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seed2.png; sourceTree = "<group>"; };
+		5D77DEA52E2CF18C000C6058 /* seed1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = seed1.jpg; sourceTree = "<group>"; };
+		5D77DEA82E2CF3F8000C6058 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,10 +85,10 @@
 		5D31BF8F2E2BD6F1007699A8 /* SandboxFuzzer */ = {
 			isa = PBXGroup;
 			children = (
+				5D77DEA22E2CF0D4000C6058 /* Resources */,
 				5D77DE8D2E2CDD26000C6058 /* FuzzerHarness.c */,
 				5D77DE592E2C84AE000C6058 /* HarnessWrapper.c */,
 				5D77DE3F2E2C3510000C6058 /* libclang_rt.fuzzer_ios.a */,
-				5D77DE3D2E2C33A5000C6058 /* Resources */,
 				5D77DE3C2E2C339D000C6058 /* Harnesses */,
 				5D77DE3B2E2C3381000C6058 /* Bridge */,
 				5D31BF902E2BD6F1007699A8 /* SandboxFuzzerApp.swift */,
@@ -92,6 +101,7 @@
 				5D77DE522E2C8129000C6058 /* SanitizerStubs.c */,
 				5D77DE552E2C81D3000C6058 /* common.h */,
 				5D77DE562E2C82AA000C6058 /* atomicBridge.c */,
+				5D77DEA82E2CF3F8000C6058 /* info.plist */,
 			);
 			path = SandboxFuzzer;
 			sourceTree = "<group>";
@@ -117,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */,
+				5D77DE9D2E2CEFA8000C6058 /* PathHelper.h */,
+				5D77DEA02E2CEFFE000C6058 /* PathHelper.m */,
 			);
 			path = Bridge;
 			sourceTree = "<group>";
@@ -133,17 +145,19 @@
 			path = Harnesses;
 			sourceTree = "<group>";
 		};
-		5D77DE3D2E2C33A5000C6058 /* Resources */ = {
+		5D77DEA22E2CF0D4000C6058 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5D77DE492E2C35F7000C6058 /* corpus */,
+				5D77DEA32E2CF0DC000C6058 /* corpus */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5D77DE492E2C35F7000C6058 /* corpus */ = {
+		5D77DEA32E2CF0DC000C6058 /* corpus */ = {
 			isa = PBXGroup;
 			children = (
+				5D77DEA52E2CF18C000C6058 /* seed1.jpg */,
+				5D77DEA42E2CF18C000C6058 /* seed2.png */,
 			);
 			path = corpus;
 			sourceTree = "<group>";
@@ -207,7 +221,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D77DEA92E2CF3F8000C6058 /* info.plist in Resources */,
 				5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */,
+				5D77DEA62E2CF18C000C6058 /* seed2.png in Resources */,
+				5D77DEA72E2CF18C000C6058 /* seed1.jpg in Resources */,
 				5D31BF952E2BD6F3007699A8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D77DEA12E2CEFFE000C6058 /* PathHelper.m in Sources */,
 				5D77DE9A2E2CEBBE000C6058 /* common.c in Sources */,
 				5D77DE9C2E2CED38000C6058 /* harness_imtranscoder.c in Sources */,
 				5D77DE992E2CEBB6000C6058 /* FuzzerMainBridge.c in Sources */,
