@@ -1,7 +1,3 @@
-// Harnesses/common.c
-#include <stdatomic.h>
-#include <CFNetwork/CFHTTPMessage.h>
+#include "common.h"
 
-void RTSPParserProcess(CFHTTPMessageRef msg) {
-    (void)msg; // suppress unused warning
-}
+atomic_int gFuzzIterationCount = 0;

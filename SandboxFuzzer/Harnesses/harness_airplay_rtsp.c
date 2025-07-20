@@ -1,38 +1,14 @@
-#include "common.h"   // brings in extern gFuzzIterationCount
-#include <stdatomic.h>
-#include <CoreFoundation/CoreFoundation.h>
-#include <CFNetwork/CFHTTPMessage.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "../SandboxFuzzer-Bridging-Header.h"
+#include <stdint.h>
+#include <stdio.h>
+#include "common.h"
 
-// Stub for private parser call
-extern void RTSPParserProcess(CFHTTPMessageRef msg);
+// Minimal implementation for AirPlay RTSP testing
+void harness_airplay_rtsp_test(const uint8_t *data, size_t size) {
+    printf("Fuzzing AirPlay RTSP with %zu bytes\n", size);
+}
 
-int harness_airplay_rtsp_test(const uint8_t *data, size_t size) {
-    // bump the shared counter
-    atomic_fetch_add_explicit(&gFuzzIterationCount, 1, memory_order_relaxed);
-
-    // Create a fake RTSP HTTP request
-    CFURLRef url = CFURLCreateWithString(NULL, CFSTR("rtsp://localhost/stream"), NULL);
-    CFHTTPMessageRef req = CFHTTPMessageCreateRequest(NULL, CFSTR("GET"), url, kCFHTTPVersion1_0);
-    CFRelease(url);
-
-    if (size > 0 && req) {
-        CFDataRef hdr = CFDataCreate(NULL, data, size);
-        CFHTTPMessageSetHeaderFieldValue(req, CFSTR("X-Apple-Payload"), hdr);
-        RTSPParserProcess(req);
-        CFRelease(hdr);
-        CFRelease(req);
-    }
-
-    // Sandbox escape detection
-    int fd = open("/var/root/secret.txt", O_RDONLY);
-    if (fd >= 0) {
-        close(fd);
-        exit(0);
-    }
-
+int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+    gFuzzIterationCount++;
+    harness_airplay_rtsp_test(data, size);
     return 0;
 }

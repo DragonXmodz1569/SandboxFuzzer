@@ -1,8 +1,9 @@
-#include <stdatomic.h>
-
 #ifndef COMMON_H
 #define COMMON_H
 
-extern _Atomic uint64_t gFuzzIterationCount;
+#include <stdint.h>
+#include <stdatomic.h>
+
+extern atomic_int gFuzzIterationCount;
 
 #endif

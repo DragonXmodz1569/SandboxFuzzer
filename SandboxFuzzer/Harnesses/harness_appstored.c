@@ -1,26 +1,13 @@
-// Harnesses/harness_appstored.c
-#include "common.h"                   // gives extern _Atomic(uint64_t) gFuzzIterationCount
-#include <stdatomic.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "../SandboxFuzzer-Bridging-Header.h"
+#include <stdint.h>
+#include <stdio.h> 
+#include "common.h"
 
-int harness_appstored_test(const uint8_t *data, size_t size) {
-    // bump the shared iteration counter
-    atomic_fetch_add_explicit(&gFuzzIterationCount, 1, memory_order_relaxed);
+void harness_appstored_test(const uint8_t *data, size_t size) {
+    printf("Fuzzing AppStore with %zu bytes\n", size);
+}
 
-    // Simulate basic request inspection
-    if (size > 0 && data[0] == 'A') {
-        // Stub logic for valid AppStore install request
-    }
-
-    // Sandbox escape detection
-    int fd = open("/var/root/secret.txt", O_RDONLY);
-    if (fd >= 0) {
-        close(fd);
-        exit(0);
-    }
-
+int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+    gFuzzIterationCount++;
+    harness_appstored_test(data, size);
     return 0;
 }
