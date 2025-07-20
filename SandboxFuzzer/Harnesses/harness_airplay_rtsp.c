@@ -1,4 +1,4 @@
-// Harnesses/harness_airplay_rtsp.c
+#include "common.h"   // brings in extern gFuzzIterationCount
 #include <stdatomic.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <CFNetwork/CFHTTPMessage.h>
@@ -10,7 +10,8 @@
 // Stub for private parser call
 extern void RTSPParserProcess(CFHTTPMessageRef msg);
 
-int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+int harness_airplay_rtsp_test(const uint8_t *data, size_t size) {
+    // bump the shared counter
     atomic_fetch_add_explicit(&gFuzzIterationCount, 1, memory_order_relaxed);
 
     // Create a fake RTSP HTTP request
@@ -21,7 +22,7 @@ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
     if (size > 0 && req) {
         CFDataRef hdr = CFDataCreate(NULL, data, size);
         CFHTTPMessageSetHeaderFieldValue(req, CFSTR("X-Apple-Payload"), hdr);
-        RTSPParserProcess(req); // Process with stubbed parser
+        RTSPParserProcess(req);
         CFRelease(hdr);
         CFRelease(req);
     }

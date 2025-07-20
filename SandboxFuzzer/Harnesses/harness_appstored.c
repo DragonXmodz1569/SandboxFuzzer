@@ -1,11 +1,13 @@
 // Harnesses/harness_appstored.c
+#include "common.h"                   // gives extern _Atomic(uint64_t) gFuzzIterationCount
 #include <stdatomic.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "../SandboxFuzzer-Bridging-Header.h"
 
-int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+int harness_appstored_test(const uint8_t *data, size_t size) {
+    // bump the shared iteration counter
     atomic_fetch_add_explicit(&gFuzzIterationCount, 1, memory_order_relaxed);
 
     // Simulate basic request inspection

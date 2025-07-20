@@ -6,15 +6,19 @@
 #include <stddef.h>
 #include <stdint.h>
 
-// Forward declare libFuzzer interfaces
-extern int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size);
-extern int LLVMFuzzerRunDriver(int *argc, char ***argv, int (*UserCb)(const uint8_t *, size_t));
-
-// Define the shared iteration counter
+// Define the shared iteration counter (only here)
 _Atomic(uint64_t) gFuzzIterationCount = 0;
+
+// libFuzzer callback: defined exactly once
+int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+    // Dispatch to the desired harness
+    return harness_imtranscoder_test(data, size);
+}
 
 // Shim that calls into libFuzzer’s driver
 int FuzzerMain(int argc, char **argv) {
+    extern int LLVMFuzzerRunDriver(int *argc, char ***argv,
+                                    int (*UserCb)(const uint8_t *, size_t));
     return LLVMFuzzerRunDriver(&argc, &argv, LLVMFuzzerTestOneInput);
 }
 
@@ -37,7 +41,7 @@ int main(int argc, char **argv) {
     struct stat st;
     if (stat(dir, &st) != 0) {
         fprintf(stderr,
-                "ERROR: The required directory \"%s\" does not exist", dir);
+                "ERROR: The required directory \"%s\" does not exist\n", dir);
         return 1;
     }
     return FuzzerMain(argc, argv);
