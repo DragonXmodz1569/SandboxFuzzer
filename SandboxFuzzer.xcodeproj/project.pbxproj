@@ -10,10 +10,10 @@
 		5D31BF952E2BD6F3007699A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF942E2BD6F3007699A8 /* Assets.xcassets */; };
 		5D31BF982E2BD6F3007699A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D31BF972E2BD6F3007699A8 /* Preview Assets.xcassets */; };
 		5D77DE5C2E2C8816000C6058 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D77DE5B2E2C8816000C6058 /* ImageIO.framework */; };
-		5D77DE612E2CDC7B000C6058 /* FuzzerMainBridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D31CBB72E2BE03E007699A8 /* FuzzerMainBridge.c */; };
 		5D77DE622E2CDC80000C6058 /* harness_imtranscoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE432E2C357A000C6058 /* harness_imtranscoder.c */; };
 		5D77DE632E2CDC83000C6058 /* harness_airplay_rtsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE452E2C3593000C6058 /* harness_airplay_rtsp.c */; };
 		5D77DE642E2CDC86000C6058 /* harness_appstored.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE472E2C35A7000C6058 /* harness_appstored.c */; };
+		5D77DE902E2CDE28000C6058 /* SanitizerStubs.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D77DE522E2C8129000C6058 /* SanitizerStubs.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,10 +212,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D77DE902E2CDE28000C6058 /* SanitizerStubs.c in Sources */,
 				5D77DE642E2CDC86000C6058 /* harness_appstored.c in Sources */,
 				5D77DE632E2CDC83000C6058 /* harness_airplay_rtsp.c in Sources */,
 				5D77DE622E2CDC80000C6058 /* harness_imtranscoder.c in Sources */,
-				5D77DE612E2CDC7B000C6058 /* FuzzerMainBridge.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
